@@ -1,0 +1,27 @@
+//part of 'auth_cubit.dart';
+
+import 'package:cinema_app/domain/entities/auth.dart';
+import 'package:meta/meta.dart';
+
+@immutable
+sealed class AuthState {}
+
+final class AuthInitial extends AuthState {}
+final class AuthLoading extends AuthState {}
+
+final class AuthLoaded extends AuthState {
+final UserEntity user;
+AuthLoaded({required this.user});
+}
+
+final class AuthFailed extends AuthState {
+  final String message;
+
+  AuthFailed({required this.message});
+}
+
+final class AuthPasswordVisibilityChanged extends AuthState {
+  final bool isVisible;
+
+  AuthPasswordVisibilityChanged(this.isVisible);
+}
